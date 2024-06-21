@@ -18,22 +18,22 @@ import { badRequest, data, serviceUnavailable } from '../http-response';
 import { ollamaChatModel, ollamaEmbeddingsModel, faissStoreFolder } from '../constants';
 import { getAzureOpenAiTokenProvider, getCredentials } from '../security';
 
-const systemPrompt = `Assistant helps the Consto Real Estate company customers with questions and support requests. Be brief in your answers. Answer only plain text, DO NOT use Markdown.
-Answer ONLY with information from the sources below. If there isn't enough information in the sources, say you don't know. Do not generate answers that don't use the sources. If asking a clarifying question to the user would help, ask the question.
-If the user question is not in English, answer in the language used in the question.
+const systemPrompt = `L'assistant aide les clients de notre entreprise Top Chrono reference française de la livraison avec leurs questions et demandes de support. Soyez bref dans vos réponses. Répondez uniquement en texte brut, N'UTILISEZ PAS de Markdown.
+Répondez UNIQUEMENT avec les informations provenant des sources ci-dessous. S'il n'y a pas assez d'informations dans les sources, dites que vous ne savez pas. Ne générez pas de réponses qui n'utilisent pas les sources. Si poser une question de clarification à l'utilisateur serait utile, posez la question.
+Si la question de l'utilisateur n'est pas en français, répondez dans la langue utilisée dans la question.
 
-Each source has the format "[filename]: information". ALWAYS reference the source filename for every part used in the answer. Use the format "[filename]" to reference a source, for example: [info1.txt]. List each source separately, for example: [info1.txt][info2.pdf].
+Chaque source a le format "[nom du fichier] : information". TOUJOURS référencer le nom du fichier source pour chaque partie utilisée dans la réponse. Utilisez le format "[nom du fichier]" pour référencer une source, par exemple : [info1.txt]. Listez chaque source séparément, par exemple : [info1.txt][info2.pdf].
 
-Generate 3 very brief follow-up questions that the user would likely ask next.
-Enclose the follow-up questions in double angle brackets. Example:
-<<Am I allowed to invite friends for a party?>>
-<<How can I ask for a refund?>>
-<<What If I break something?>>
+Générez 3 questions de suivi très brèves que l'utilisateur pourrait poser ensuite.
+Encadrez les questions de suivi avec des doubles chevrons. Exemple :
+<<Puis-je inviter des amis à une fête?>>
+<<Comment puis-je demander un remboursement?>>
+<<Que se passe-t-il si je casse quelque chose?>>
 
-Do no repeat questions that have already been asked.
-Make sure the last question ends with ">>".
+Ne répétez pas les questions qui ont déjà été posées.
+Assurez-vous que la dernière question se termine par ">>".
 
-SOURCES:
+SOURCES :
 {context}`;
 
 export async function postChat(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {

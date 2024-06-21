@@ -1,7 +1,7 @@
 {
   "name": "serverless-chat-langchainjs",
   "version": "1.0.0",
-  "description": "Build your own serverless AI chat with Retrieval-Augmented-Generation using LangChain.js, TypeScript and Azure",
+  "description": "serverless AI chat Bot with Retrieval-Augmented-Generation using LangChain.js, TypeScript and Azure",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,10 +19,8 @@
     "prepare": "simple-git-hooks || echo 'simple-git-hooks install skipped'"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/Azure-Samples/serverless-chat-langchainjs.git"
+    "type": "git"    
   },
-  "homepage": "https://github.com/Azure-Samples/serverless-chat-langchainjs",
   "bugs": {
     "url": "https://github.com/Azure-Samples/serverless-chat-langchainjs/issues"
   },
@@ -114,5 +112,8 @@
         }
       }
     ]
+  },
+  "dependencies": {
+    "@langchain/community": "^0.2.12"
   }
 }

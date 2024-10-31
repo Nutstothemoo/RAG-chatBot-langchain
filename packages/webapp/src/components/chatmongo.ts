@@ -4,7 +4,7 @@ import { repeat } from 'lit/directives/repeat.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { customElement, property, state, query } from 'lit/decorators.js';
 import { AIChatCompletionDelta, AIChatMessage } from '@microsoft/ai-chat-protocol';
-import { type ChatRequestOptions, getCitationUrl, getCompletion } from '../api.js';
+import { type ChatRequestOptions, getCitationUrl, getCompletionMongo } from '../api.js';
 import { type ParsedMessage, parseMessageIntoHtml } from '../message-parser.js';
 import sendSvg from '../../assets/send.svg?raw';
 import questionSvg from '../../assets/question.svg?raw';
@@ -64,12 +64,12 @@ export const defaultOptions: ChatComponentOptions = {
  * The component is built as a custom element that extends LitElement.
  *
  * Labels and other aspects are configurable via the `option` property.
- * @element azc-chat
+ * @element azc-chatmongo
  * @fires messagesUpdated - Fired when the message thread is updated
  * @fires stateChanged - Fired when the state of the component changes
  * */
-@customElement('azc-chat')
-export class ChatComponent extends LitElement {
+@customElement('azc-chatmongo')
+export class ChatComponentMongo extends LitElement {
   @property({
     type: Object,
     converter: (value) => ({ ...defaultOptions, ...JSON.parse(value ?? '{}') }),
@@ -120,7 +120,7 @@ export class ChatComponent extends LitElement {
     this.isLoading = true;
     this.scrollToLastMessage();
     try {
-      const response = getCompletion({ ...this.options, messages: this.messages });
+      const response = getCompletionMongo({ ...this.options, messages: this.messages });
       const chunks = response as AsyncGenerator<AIChatCompletionDelta>;
       const { messages } = this;
       const message: AIChatMessage = {
@@ -704,6 +704,6 @@ export class ChatComponent extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'azc-chat': ChatComponent;
+    'azc-chatmongo': ChatComponent;
   }
 }

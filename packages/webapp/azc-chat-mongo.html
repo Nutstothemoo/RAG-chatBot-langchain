@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content="AI Chat with Enterprise Data" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <title>Topchrono Assistant</title>
+    <title>Topchrono Assistant - ChatBot Mongo</title>
     <style>
       :root {
         --azc-primary: rgb(233, 114, 2);
@@ -41,6 +41,11 @@
       nav a:hover {
         text-decoration: underline;
       }
+      azc-chatmongo {
+        display: block;
+        max-width: 1024px;
+        margin: 0 auto;
+      }
     </style>
   </head>
   <body>
@@ -49,7 +54,7 @@
       <a href="azc-chat.html">ChatBot Assistant v1</a>
       <a href="azc-chat-mongo.html">ChatBot Assistant v2</a>
     </nav>
-    <h1>Welcome to Topchrono Assistant</h1>
-    <p>Choose a chat option from the navigation above.</p>
+    <azc-chatmongo></azc-chatmongo>
+    <script type="module" src="/src/index.ts"></script>
   </body>
 </html>

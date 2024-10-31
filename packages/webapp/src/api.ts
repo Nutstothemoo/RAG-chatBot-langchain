@@ -12,7 +12,23 @@ export async function* getCompletion(options: ChatRequestOptions) {
   const apiUrl = options.apiUrl || apiBaseUrl;
   const client = new AIChatProtocolClient(`${apiUrl}/api/chat`);
   const result = await client.getStreamedCompletion(options.messages);
+  for await (const response of result) {
+    if (!response.delta) {
+      continue;
+    }
 
+    yield new Promise<AIChatCompletionDelta>((resolve) => {
+      setTimeout(() => {
+        resolve(response);
+      }, options.chunkIntervalMs);
+    });
+  }
+}
+
+export async function* getCompletionMongo(options: ChatRequestOptions) {
+  const apiUrl = options.apiUrl || apiBaseUrl;
+  const client = new AIChatProtocolClient(`${apiUrl}/api/chat/mongo`);
+  const result = await client.getStreamedCompletion(options.messages);
   for await (const response of result) {
     if (!response.delta) {
       continue;

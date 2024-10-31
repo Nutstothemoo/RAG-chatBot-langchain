@@ -3,7 +3,7 @@
 # Download at: https://aka.ms/vscode/rest-client
 ##################################################################
 
-@api_host = http://localhost:7071
+@api_host = http://localhost:7072
 
 ### Upload PDF Document
 POST {{api_host}}/api/documents

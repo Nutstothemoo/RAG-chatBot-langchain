@@ -8,7 +8,7 @@
     "watch": "tsc -w",
     "clean": "rimraf dist",
     "prestart": "npm run clean && npm run build",
-    "start:host": "func start",
+    "start:host": "func start --port 7072",
     "start": "concurrently npm:start:host npm:watch --raw --kill-others"
   },
   "author": "Microsoft",
@@ -25,6 +25,7 @@
     "dotenv": "^16.4.5",
     "faiss-node": "^0.5.1",
     "langchain": "^0.2.0",
+    "mongodb": "^6.10.0",
     "pdf-parse": "^1.1.1"
   },
   "devDependencies": {
